@@ -90,12 +90,14 @@ return {
     dependencies = {
       {
         -- snippet plugin
+        "mlaursen/vim-react-snippets",
         "L3MON4D3/LuaSnip",
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
           require "nvchad.configs.luasnip"
+          require("vim-react-snippets").lazy_load()
         end,
       },
 
