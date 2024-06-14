@@ -58,7 +58,7 @@ return {
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         if opts.ensure_installed and #opts.ensure_installed > 0 then
           vim.cmd "Mason"
-          local mr = require("mason-registry")
+          local mr = require "mason-registry"
 
           mr.refresh(function()
             for _, tool in ipairs(opts.ensure_installed) do
@@ -88,32 +88,25 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
+      -- snippet plugin
       {
-        -- snippet plugin
         "mlaursen/vim-react-snippets",
         "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
+        dependencies = {
+          "rafamadriz/friendly-snippets",
+          "benfowler/telescope-luasnip.nvim",
+        },
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
           require("luasnip").config.set_config(opts)
           require "nvchad.configs.luasnip"
           require("vim-react-snippets").lazy_load()
-        end,
-      },
 
-      {
-        "L3MON4D3/LuaSnip",
-        build = vim.fn.has "win32" ~= 0 and "make install_jsregexp" or nil,
-        dependencies = {
-          "rafamadriz/friendly-snippets",
-          "benfowler/telescope-luasnip.nvim",
-        },
-        config = function(_, opts)
-          if opts then require("luasnip").config.setup(opts) end
-          vim.tbl_map(
-            function(type) require("luasnip.loaders.from_" .. type).lazy_load() end,
-            { "vscode", "snipmate", "lua" }
-          )
+          -- Load snippets
+          vim.tbl_map(function(type)
+            require("luasnip.loaders.from_" .. type).lazy_load()
+          end, { "vscode", "snipmate", "lua" })
+
           -- friendly-snippets - enable standardized comments snippets
           require("luasnip").filetype_extend("typescript", { "tsdoc" })
           require("luasnip").filetype_extend("javascript", { "jsdoc" })
