@@ -69,6 +69,7 @@ map(
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "telescope find all files" }
 )
+map("n", "<leader>fk", require("telescope.builtin").keymaps, { desc = "Find Keymaps" })
 
 -- -- terminal
 -- map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
