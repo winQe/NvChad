@@ -1,8 +1,8 @@
 return {
+  "nvim-lua/plenary.nvim",
 
   {
     "NvChad/base46",
-    branch = "v2.5",
     build = function()
       require("base46").load_all_highlights()
     end,
@@ -10,21 +10,14 @@ return {
 
   {
     "NvChad/ui",
-    branch = "v2.5",
     lazy = false,
-    config = function()
-      require "nvchad"
-    end,
   },
 
   {
     "nvim-tree/nvim-web-devicons",
     opts = function()
-      return { override = require "nvchad.icons.devicons" }
-    end,
-    config = function(_, opts)
       dofile(vim.g.base46_cache .. "devicons")
-      require("nvim-web-devicons").setup(opts)
+      return { override = require "nvchad.icons.devicons" }
     end,
   },
 
@@ -53,9 +46,6 @@ return {
     opts = function()
       return require "nvchad.configs.nvimtree"
     end,
-    config = function(_, opts)
-      require("nvim-tree").setup(opts)
-    end,
   },
 
   {
@@ -68,8 +58,6 @@ return {
     end,
   },
 
-  "nvim-lua/plenary.nvim",
-
   -- formatting!
   {
     "stevearc/conform.nvim",
@@ -78,9 +66,6 @@ return {
         lua = { "stylua" },
       },
     },
-    config = function(_, opts)
-      require("conform").setup(opts)
-    end,
   },
 
   -- git stuff
@@ -89,9 +74,6 @@ return {
     event = "User FilePost",
     opts = function()
       return require "nvchad.configs.gitsigns"
-    end,
-    config = function(_, opts)
-      require("gitsigns").setup(opts)
     end,
   },
 
@@ -103,26 +85,20 @@ return {
       return require "nvchad.configs.mason"
     end,
     config = function(_, opts)
+      if opts.ensure_installed then
+        vim.api.nvim_echo({
+          { "\n   ensure_installed has been removed! use M.mason.pkgs table in your chadrc.\n", "WarningMsg" },
+          { "   https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua#L85 \n\n", "FloatBorder" },
+          {
+            "   MasonInstallAll will automatically install all mason packages of tools configured in your plugins. \n",
+            "healthSuccess",
+          },
+          { "   Currently supported plugins are : lspconfig, nvim-lint, conform. \n", "Added" },
+          { "   So dont add them in your chadrc as MasonInstallAll automatically installs them! \n", "Changed" },
+        }, false, {})
+      end
+
       require("mason").setup(opts)
-
-      -- custom nvchad cmd to install all mason binaries listed
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        if opts.ensure_installed and #opts.ensure_installed > 0 then
-          vim.cmd "Mason"
-          local mr = require "mason-registry"
-
-          mr.refresh(function()
-            for _, tool in ipairs(opts.ensure_installed) do
-              local p = mr.get_package(tool)
-              if not p:is_installed() then
-                p:install()
-              end
-            end
-          end)
-        end
-      end, {})
-
-      vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
 
@@ -207,9 +183,6 @@ return {
     opts = function()
       return require "nvchad.configs.cmp"
     end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
   },
 
   {
@@ -233,7 +206,13 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "User FilePost",
-    opts = { user_default_options = { names = false } },
+    opts = {
+      user_default_options = { names = false },
+      filetypes = {
+        "*",
+        "!lazy",
+      },
+    },
     config = function(_, opts)
       require("colorizer").setup(opts)
 
