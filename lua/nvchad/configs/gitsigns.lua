@@ -1,6 +1,6 @@
 dofile(vim.g.base46_cache .. "git")
 
-local options = {
+return {
   signs = {
     delete = { text = "󰍵" },
     changedelete = { text = "󱕖" },
@@ -53,5 +53,3 @@ local options = {
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Git Select Hunk" })
   end,
 }
-
-return options

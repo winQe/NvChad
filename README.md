@@ -16,6 +16,7 @@
 <div align="center">
  
 [![Neovim Minimum Version](https://img.shields.io/badge/Neovim-0.10-blueviolet.svg?style=flat-square&logo=Neovim&color=90E59A&logoColor=white)](https://github.com/neovim/neovim)
+[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue?style=flat-square)](https://wiki.mutable.ai/NvChad/NvChad)
 [![GitHub Issues](https://img.shields.io/github/issues/NvChad/NvChad.svg?style=flat-square&label=Issues&color=d77982)](https://github.com/NvChad/NvChad/issues)
 [![Discord](https://img.shields.io/discord/869557815780470834?color=738adb&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/gADmkJb9Fb)
 [![Matrix](https://img.shields.io/badge/Matrix-40aa8b.svg?style=flat-square&logo=Matrix&logoColor=white)](https://matrix.to/#/#nvchad:matrix.org)
@@ -25,7 +26,7 @@
 
 ## Showcase
 
-<img src="https://nvchad.com/features/nvdash.webp">
+![nvdash](https://github.com/user-attachments/assets/0c7e2c8f-8940-42ea-9c18-7456768d2d05)
 <img src="https://nvchad.com/banner.webp">
 
 <img src="https://nvchad.com/screenshots/onedark.webp">
@@ -82,7 +83,11 @@ A fuzzy file finder, picker, sorter, previewer and much more:
 <h3> NvCheatsheet ( our UI Plugin ) </h3>
 <kbd> <img src="https://nvchad.com/features/nvcheatsheet.webp"/></kbd>
 
+<h3> Modern Theme Picker </h3>
+<kbd> <img src="https://github.com/user-attachments/assets/897e46f1-9ae2-4cc2-8fa2-64eff40a90dd" /> </kbd>
 </details>
+
+For detailed info list, check [features page](https://nvchad.com/docs/features)
 
 ## Plugins list
 
