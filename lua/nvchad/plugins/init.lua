@@ -16,9 +16,9 @@ return {
     end,
   },
 
-  "nvchad/volt",
-  "nvchad/minty",
-  "nvchad/menu",
+  "nvzone/volt",
+  "nvzone/menu",
+  { "nvzone/minty", cmd = { "Huefy", "Shades" } },
 
   {
     "nvim-tree/nvim-web-devicons",
@@ -57,7 +57,7 @@ return {
 
   {
     "folke/which-key.nvim",
-    keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+    keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     opts = function()
       dofile(vim.g.base46_cache .. "whichkey")
