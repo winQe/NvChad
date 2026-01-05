@@ -21,27 +21,29 @@ map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
-map("n", "<leader>fm", function()
+map({ "n", "x" }, "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })
 
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
--- -- tabufline
--- map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
+-- tabufline
+if require("nvconfig").ui.tabufline.enabled then
+  -- map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
 
-map("n", "<tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "buffer goto next" })
+  map("n", "<tab>", function()
+    require("nvchad.tabufline").next()
+  end, { desc = "buffer goto next" })
 
-map("n", "<S-tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "buffer goto prev" })
+  map("n", "<S-tab>", function()
+    require("nvchad.tabufline").prev()
+  end, { desc = "buffer goto prev" })
 
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
+  map("n", "<leader>x", function()
+    require("nvchad.tabufline").close_buffer()
+  end, { desc = "buffer close" })
+end
 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })

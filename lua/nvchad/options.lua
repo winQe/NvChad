@@ -5,6 +5,7 @@ local g = vim.g
 -------------------------------------- options ------------------------------------------
 o.laststatus = 3
 o.showmode = false
+o.splitkeep = "screen"
 
 o.clipboard = "unnamedplus"
 o.cursorline = true
